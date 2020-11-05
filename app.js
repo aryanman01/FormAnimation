@@ -9,6 +9,10 @@ function animatedForm(){
 
             if(input.type === "text" && validateUser(input)) {
                 nextSlide(parent,nextForm);
+            } else if(input.type === 'email' && validateEmail(input)){
+                nextSlide(parent,nextForm);
+            } else if(input.type === 'password' && validateUser(input)){
+                nextSlide(parent,nextForm);
             }
         });
     });
@@ -23,6 +27,18 @@ function validateUser(user){
         error("rgb(87,189,130)");
         return true;
     }
+}
+
+function validateEmail(email){
+    const validation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(validation.test(email.value)){
+        error("rgb(87,189,130)");
+        return true;
+    } else {
+        console.log("invalid email");
+        error("rgb(189,87,87)");
+    }
+
 }
 
 function nextSlide(parent, nextForm){
